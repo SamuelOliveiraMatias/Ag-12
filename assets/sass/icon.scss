@@ -1,0 +1,19 @@
+.insta {
+    font-size: 47px; // Define o tamanho da fonte como 47 pixels
+
+    // Define um fundo com um gradiente radial que vai de amarelo a azul
+    background: radial-gradient(circle at 30% 107%,
+            #fdf497 0%, // Amarelo claro no início
+            #fdf497 5%, // Amarelo claro até 5%
+            #fd5949 45%, // Transição para um vermelho na posição 45%
+            #d6249f 60%, // Transição para um roxo na posição 60%
+            #285AEB 90% // Azul na posição 90%
+        );
+
+    // Faz com que o gradiente seja aplicado ao texto
+    -webkit-background-clip: text; // Para navegadores baseados em WebKit (como Chrome e Safari)
+    background-clip: text; // Para outros navegadores
+
+    // Torna a cor do texto transparente, permitindo ver o gradiente de fundo
+    -webkit-text-fill-color: transparent; // Para navegadores baseados em WebKit
+}

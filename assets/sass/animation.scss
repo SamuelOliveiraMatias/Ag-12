@@ -1,0 +1,19 @@
+* {
+    // Aplica uma transição suave a todas as propriedades de todos os elementos
+    transition: all 0.3s ease-in-out !important; // A transição dura 0.3 segundos e usa um efeito de "ease-in-out"
+}
+
+.transFor {
+    // Aplica a mesma transição suave aos elementos com a classe transFor
+    transition: all 0.3s ease-in-out !important; // Garante que esses elementos também tenham transições suaves
+}
+
+.transFor:hover {
+    // Aplica um efeito de aumento quando o mouse passa sobre o elemento
+    transform: scale(1.05) !important; // Aumenta o tamanho do elemento para 105% de sua largura e altura
+}
+
+.transFor:focus {
+    // Aplica o mesmo efeito de aumento quando o elemento recebe foco (por exemplo, ao ser clicado)
+    transform: scale(1.05) !important; // Aumenta o tamanho do elemento para 105% de sua largura e altura
+}

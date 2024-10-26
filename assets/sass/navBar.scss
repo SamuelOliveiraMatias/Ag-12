@@ -1,0 +1,7 @@
+#separacao {
+    @media (max-width: 576px) {
+        // Aplica estilos quando a largura da tela é menor ou igual a 576 pixels
+        margin-right: 0.25rem !important; // Define a margem direita como 0.25rem, forçando essa regra
+        margin-left: 0.25rem !important; // Define a margem esquerda como 0.25rem, forçando essa regra
+    }
+}

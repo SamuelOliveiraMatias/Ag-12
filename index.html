@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <!-- META TAGS -->
+    <meta charset="UTF-8">
+    <meta name="author" content="Samuel Oliveira Matias">
+    <meta name="keywords" content="HTML, CSS, SASS, BOOTSTRAP, JS">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Agenda 12: Site de favoritos que apresenta cinco sites favoritos em um carousel de cards interativos. Utiliza Bootstrap para animações, SASS para estilização personalizada e JavaScript para funcionalidade de troca de tema.">
+
+    <!-- LINKS -->
+    <link rel="stylesheet" href="assets/css/style.min.css">
+    <link rel="shortcut icon" type="imagex/png" href="assets/img/icon/favorite.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Meus sites favoritos</title>
+</head>
+
+<body class="bg-light">
+
+    <!-- Navegação Principal: Contém links essenciais para a navegação do usuário -->
+    <nav class="navbar bg-white px-2 fixed-top sh1">
+
+        <!-- Container Fluid: Utilizado para garantir que a barra de navegação ocupe toda a largura da tela -->
+        <div class="container-fluid">
+
+            <!-- Botão para abrir a barra OffcanvasNav, que contém links de localização rápida para cada card -->
+            <button class="btn bi bi-list fs-4 rounded-circle sh2 diminuirFonte" type="button"
+                data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav"></button>
+
+            <!-- Botão para voltar à página inicial -->
+            <div class="col d-flex align-items-center justify-content-center">
+
+                <!-- Imagem/Logo do site -->
+                <a class="navbar-brand col-xs-12 d-flex align-items-center justify-content-center rounded px-2 m-0 sh2"
+                    href="index.html">
+
+                    <!-- Imagem/Logo do site -->
+                    <img src="assets/img/icon/favorite.png" alt="Favorite.icon" class="p-0 m-0 w-38_67">
+
+                    Favoritos
+
+                </a>
+
+            </div>
+
+            <!-- Div para agrupar os botões de ação -->
+            <div class="d-flex flex-row">
+
+                <!-- Botão para acessar o repositório GitHub do site -->
+                <a class="btn bi bi-github fs-4 rounded-circle sh2 diminuirFonte"
+                    href="https://github.com/SamuelOliveiraMatias" target="_blank"></a>
+
+                <!-- Div para separar os botões visualmente -->
+                <div class="mx-2 rounded-pill bg-dark opacity-50 sh2 w-2" id="separacao"></div>
+
+                <!-- Botão para abrir o menu suspenso de seleção do tema do site -->
+                <div class="dropdown">
+
+                    <button class="btn fs-4 rounded-circle sh2 diminuirFonte" id="modeIcon" type="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    </button>
+
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <button type="button" class="dropdown-item d-flex align-items-center" data-mode="light">
+                                <i class="bi bi-brightness-high-fill pe-3"></i>
+                                LIGHT
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="dropdown-item d-flex align-items-center" data-mode="dark">
+                                <i class="bi bi-moon-stars-fill pe-3"></i>
+                                DARK
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="dropdown-item d-flex align-items-center active"
+                                data-mode="auto">
+                                <i class="bi-circle-half pe-3"></i>
+                                AUTO
+                            </button>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+
+            <!-- Barra de navegação Offcanvas: Exibe links e opções em um painel deslizante -->
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+
+                <!-- Offcanvas Header: Cabeçalho da barra de navegação Offcanvas -->
+                <div class="offcanvas-header">
+
+                    <h5 class="offcanvas-title display-5" id="offcanvasNavLabel">LINKS</h5>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+
+                </div>
+
+                <hr class="p-0 m-0">
+
+                <!-- Offcanvas Body: Conteúdo principal da barra de navegação Offcanvas -->
+                <div class="offcanvas-body bg-light">
+
+                    <!-- Botão para retornar à página inicial -->
+                    <div class="btn-group btn-group-sm bg-light d-flex align-items-center justify-content-center my-3 sh3 h-52"
+                        role="group" id="lightDark">
+
+                        <!-- Botão Home: Redireciona para a página inicial (Favoritos) -->
+                        <a class="col-11 btn btn-light d-flex align-items-center justify-content-start fs-6"
+                            href="index.html" id="btnLightDark">
+
+                            <img src="assets/img/icon/favorite.png" alt="Favorite.icon" class="m-0 p-0 w-38_67">
+
+                            FAVORITOS
+
+                        </a>
+
+                        <a class="btn btn-success col d-flex align-items-center justify-content-center h-52"
+                            href="index.html">
+
+                            <i class="bi bi-box-arrow-down-left fs-6 float-end px-1"></i>
+
+                        </a>
+
+                    </div>
+
+                    <!-- AccordionCards: Componente Accordion utilizado para agrupar links de localização rápida dos cards -->
+                    <div class="accordion my-3" id="accordionCards" data-bs-theme="light">
+
+                        <!-- Accordion Item: Item individual dentro do componente Accordion -->
+                        <div class="accordion-item sh3">
+
+                            <!-- Accordion Header: Cabeçalho do item do Accordion -->
+                            <h2 class="accordion-header">
+
+                                <!-- Botão pai de colapse: Controla a expansão e contração do Accordion -->
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseAccordionItem" aria-expanded="false"
+                                    aria-controls="collapseAccordionItem">
+
+                                    <i class="bi bi-archive-fill me-2"></i>
+
+                                    CARDS
+
+                                </button>
+
+                            </h2>
+
+                            <!-- Item filho do colapse: Parte que se expande ou contrai dentro do Accordion -->
+                            <div id="collapseAccordionItem" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionCards">
+
+                                <!-- Accordion Body: Conteúdo principal do item do Accordion -->
+                                <div class="accordion-body">
+
+                                    <!-- Div de localização rápida para o card "Google": Contém links ou informações acessíveis rapidamente -->
+                                    <div class="my-3">
+
+                                        <div class="btn-group btn-group-sm d-flex align-items-center justify-content-center sh4"
+                                            role="group">
+
+                                            <!-- Botão pai de colapso do AutoSliderGoogle: Controla a expansão e contração do slider -->
+                                            <button class="col btn btn-dark fs-6 px-2 h-52" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseAutoSliderGoogle"
+                                                aria-expanded="false" aria-controls="collapseAutoSliderGoogle">
+                                                1
+                                            </button>
+
+                                            <!-- Link de localização rápida para o card "Google": Acesso direto a informações relevantes -->
+                                            <button
+                                                class="btn btn-light col-10 d-flex align-items-center justify-content-start h-52"
+                                                type="button" data-bs-target="#carouselCards" data-bs-slide-to="0">
+
+                                                <i class="bi bi-google me-2 fs-1"></i>
+
+                                                <p class="my-auto fw-bold">GOOGLE</p>
+
+                                            </button>
+
+                                            <!-- Link da página do "Google" (abre em nova aba): Acesso direto ao site do Google -->
+                                            <a class="btn btn-success col d-flex align-items-center justify-content-center h-52"
+                                                href="https://www.google.com" target="_blank">
+
+                                                <i class="bi bi-box-arrow-up-right fs-6 float-end px-1"></i>
+
+                                            </a>
+
+                                        </div>
+
+                                        <!-- Conteúdo filho do colapso do AutoSliderGoogle: Informações ou elementos exibidos quando o slider está expandido -->
+                                        <div class="collapse rounded-0 rounded-bottom-1 sh4"
+                                            id="collapseAutoSliderGoogle">
+
+                                            <div class="card card-body rounded-0 rounded-bottom-1 text-bg-light">
+
+                                                <button class="btn btn-dark">
+                                                    <i class="bi bi-tags"></i>
+                                                    TAGS
+                                                </button>
+
+
+                                                <ul class="list-group my-2 bg-secondary">
+                                                    <li class="list-group-item">Produtividade</li>
+                                                    <li class="list-group-item">Navegação</li>
+                                                    <li class="list-group-item">Colaboração</li>
+                                                </ul>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Div de localização rápida para o card "Youtube": Contém links ou informações acessíveis rapidamente -->
+                                    <div class="my-3">
+
+                                        <div class="btn-group btn-group-sm d-flex align-items-center justify-content-center sh4"
+                                            role="group">
+
+                                            <!-- Botão pai de colapso do AutoSliderYoutube: Controla a expansão e contração do slider -->
+                                            <button class="col btn btn-dark fs-6 px-2 h-52" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseAutoSliderYoutube"
+                                                aria-expanded="false" aria-controls="collapseAutoSliderYoutube">
+                                                2
+                                            </button>
+
+                                            <!-- Link de localização rápida para o card "YouTube": Acesso direto a informações relevantes -->
+                                            <button
+                                                class="btn btn-light col-10 d-flex align-items-center justify-content-start h-52"
+                                                type="button" data-bs-target="#carouselCards" data-bs-slide-to="1">
+
+                                                <i class="bi bi-youtube me-2 fs-1 color-red"></i>
+
+                                                <p class="my-auto fw-bold">YOUTUBE</p>
+
+                                            </button>
+
+                                            <!-- Link da página do "Youtube" (abre em nova aba): Acesso direto ao site do Google -->
+                                            <a class="btn btn-success col d-flex align-items-center justify-content-center h-52"
+                                                href="https://www.youtube.com" target="_blank">
+
+                                                <i class="bi bi-box-arrow-up-right fs-6 float-end px-1"></i>
+
+                                            </a>
+
+                                        </div>
+
+                                        <!-- Conteúdo filho do colapso do AutoSliderYoutube: Informações ou elementos exibidos quando o slider está expandido -->
+                                        <div class="collapse rounded-0 rounded-bottom-1 sh4"
+                                            id="collapseAutoSliderYoutube">
+
+                                            <div class="card card-body rounded-0 rounded-bottom-1 text-bg-light">
+
+                                                <button class="btn btn-dark">
+                                                    <i class="bi bi-tags"></i>
+                                                    TAGS
+                                                </button>
+
+
+                                                <ul class="list-group my-2 bg-secondary">
+                                                    <li class="list-group-item">Aprendizado</li>
+                                                    <li class="list-group-item">Entretenimento</li>
+                                                    <li class="list-group-item">Tutoriais</li>
+                                                </ul>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Div de localização rápida para o card "GitHub": Contém links ou informações acessíveis rapidamente -->
+                                    <div class="my-3">
+
+                                        <div class="btn-group btn-group-sm d-flex align-items-center justify-content-center sh4"
+                                            role="group">
+
+                                            <!-- Botão pai de colapso do AutoSliderGitHub: Controla a expansão e contração do slider -->
+                                            <button class="col btn btn-dark fs-6 px-2 h-52" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseAutoSliderGithub"
+                                                aria-expanded="false" aria-controls="collapseAutoSliderGithub">
+                                                3
+                                            </button>
+
+                                            <!-- Link de localização rápida para o card "GitHub": Acesso direto a informações relevantes -->
+                                            <button
+                                                class="btn btn-light col-10 d-flex align-items-center justify-content-start h-52"
+                                                type="button" data-bs-target="#carouselCards" data-bs-slide-to="2">
+
+                                                <i class="bi bi-github me-2 fs-1 face"></i>
+
+                                                <p class="my-auto fw-bold">GITHUB</p>
+
+                                            </button>
+
+                                            <!-- Link da página do "GitHub" (abre em nova aba): Acesso direto ao site do Google -->
+                                            <a class="btn btn-success col d-flex align-items-center justify-content-center h-52"
+                                                href="https://www.github.com" target="_blank">
+
+                                                <i class="bi bi-box-arrow-up-right fs-6 float-end px-1"></i>
+
+                                            </a>
+
+                                        </div>
+
+                                        <!-- Conteúdo filho do colapso do AutoSliderGitHub: Informações ou elementos exibidos quando o slider está expandido -->
+                                        <div class="collapse rounded-0 rounded-bottom-1 sh4"
+                                            id="collapseAutoSliderGithub">
+
+                                            <div class="card card-body rounded-0 rounded-bottom-1 text-bg-light">
+
+                                                <button class="btn btn-dark">
+                                                    <i class="bi bi-tags"></i>
+                                                    TAGS
+                                                </button>
+
+
+                                                <ul class="list-group my-2 bg-secondary">
+                                                    <li class="list-group-item">Desenvolvimento</li>
+                                                    <li class="list-group-item">Colaboração</li>
+                                                    <li class="list-group-item">Controle De Versão</li>
+                                                </ul>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Div de localização rápida para o card "Instagram": Contém links ou informações acessíveis rapidamente -->
+                                    <div class="my-3">
+
+                                        <div class="btn-group btn-group-sm d-flex align-items-center justify-content-center sh4"
+                                            role="group">
+
+                                            <!-- Botão pai de colapso do AutoSliderInstagram: Controla a expansão e contração do slider -->
+                                            <button class="col btn btn-dark fs-6 px-2 h-52" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseAutoSliderInstagram"
+                                                aria-expanded="false" aria-controls="collapseAutoSliderInstagram">
+                                                4
+                                            </button>
+
+                                            <!-- Link de localização rápida para o card "Instagram": Acesso direto a informações relevantes -->
+                                            <button
+                                                class="btn btn-light col-10 d-flex align-items-center justify-content-start h-52"
+                                                type="button" data-bs-target="#carouselCards" data-bs-slide-to="3">
+
+                                                <i class="bi bi-instagram me-2 fs-1 insta"></i>
+
+                                                <p class="my-auto fw-bold">INSTAGRAM</p>
+
+                                            </button>
+
+                                            <!-- Link da página do "Instagram" (abre em nova aba): Acesso direto ao site do Google -->
+                                            <a class="btn btn-success col d-flex align-items-center justify-content-center h-52"
+                                                href="https://instagram.com" target="_blank">
+
+                                                <i class="bi bi-box-arrow-up-right fs-6 float-end px-1"></i>
+
+                                            </a>
+
+                                        </div>
+
+                                        <!-- Conteúdo filho do colapso do AutoSliderInstagram: Informações ou elementos exibidos quando o slider está expandido -->
+                                        <div class="collapse rounded-0 rounded-bottom-1 sh4"
+                                            id="collapseAutoSliderInstagram">
+
+                                            <div class="card card-body rounded-0 rounded-bottom-1 text-bg-light">
+
+                                                <button class="btn btn-dark">
+                                                    <i class="bi bi-tags"></i>
+                                                    TAGS
+                                                </button>
+
+
+                                                <ul class="list-group my-2 bg-secondary">
+                                                    <li class="list-group-item">Criatividade</li>
+                                                    <li class="list-group-item">Inspiração</li>
+                                                    <li class="list-group-item">Estilo</li>
+                                                </ul>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Div de localização rápida para o card "WhatsApp": Contém links ou informações acessíveis rapidamente -->
+                                    <div class="my-3">
+
+                                        <div class="btn-group btn-group-sm d-flex align-items-center justify-content-center sh4"
+                                            role="group">
+
+                                            <!-- Botão pai de colapso do AutoSliderWhatsApp: Controla a expansão e contração do slider -->
+                                            <button class="col btn btn-dark fs-6 px-2 h-52" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseAutoSliderWhatsapp"
+                                                aria-expanded="false" aria-controls="collapseAutoSliderWhatsapp">
+                                                5
+                                            </button>
+
+                                            <!-- Link de localização rápida para o card "WhatsApp": Acesso direto a informações relevantes -->
+                                            <button
+                                                class="btn btn-light col-10 d-flex align-items-center justify-content-start h-52"
+                                                type="button" data-bs-target="#carouselCards" data-bs-slide-to="4">
+
+                                                <i class="bi bi-whatsapp me-2 fs-1 color-green"></i>
+
+                                                <p class="my-auto fw-bold">WHATSAPP</p>
+
+                                            </button>
+
+                                            <!-- Link da página do "WhatsApp" (abre em nova aba): Acesso direto ao site do Google -->
+                                            <a class="btn btn-success col d-flex align-items-center justify-content-center h-52"
+                                                href="https://www.whatsapp.com" target="_blank">
+
+                                                <i class="bi bi-box-arrow-up-right fs-6 float-end px-1"></i>
+
+                                            </a>
+
+                                        </div>
+
+                                        <!-- Conteúdo filho do colapso do AutoSliderWhatsApp: Informações ou elementos exibidos quando o slider está expandido -->
+                                        <div class="collapse rounded-0 rounded-bottom-1 sh4"
+                                            id="collapseAutoSliderWhatsapp">
+
+                                            <div class="card card-body rounded-0 rounded-bottom-1 text-bg-light">
+
+                                                <button class="btn btn-dark">
+                                                    <i class="bi bi-tags"></i>
+                                                    TAGS
+                                                </button>
+
+
+                                                <ul class="list-group my-2 bg-secondary">
+                                                    <li class="list-group-item">Comunicação</li>
+                                                    <li class="list-group-item">Grupos</li>
+                                                    <li class="list-group-item">Praticidade</li>
+                                                </ul>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <!-- Main: Conteúdo principal do site, que contém a localização dos cards -->
+    <main class="d-flex align-items-center justify-content-center">
+
+        <!-- Div para agrupar os cards dentro de um Carousel: Facilita a navegação entre os cards -->
+        <div id="carouselCards" class="carousel slide mt-86">
+
+            <!-- Carousel Inner: Contém os itens do Carousel, permitindo a rotação entre os cards -->
+            <div class="carousel-inner mt-3">
+
+                <!-- CARD 1 - GOOGLE -->
+                <div class="carousel-item active vh-100" data-bs-theme="light">
+
+                    <!-- CARD - GOOGLE -->
+                    <div class="card col-xs-12 col-sm-10 m-auto sh5">
+
+                        <!-- Card Image Top: Imagem exibida na parte superior do card -->
+                        <div
+                            class="col-12 d-flex align-items-center justify-content-center rounded-top background-white">
+
+                            <img src="assets/img/img/Google-Logo.png" alt="Google" class="card-img-top">
+
+                        </div>
+
+                        <!-- Card Header: Cabeçalho do card, geralmente contém o título ou informações principais -->
+                        <div class="card-header d-flex align-items-center justify-content-center flex-column">
+
+                            <h5 class="d-flex align-items-center card-title testeB fs-30">
+
+                                <i class="bi bi-google me-2 fs-47"></i>
+
+                                Google
+
+                            </h5>
+
+                        </div>
+
+                        <!-- Card Body: Conteúdo principal do card, onde são apresentadas informações detalhadas -->
+                        <div class="card-body">
+
+                            <p class="mx-2 testeB">
+                                O Google é essencial no meu dia a dia. Uso para pesquisas, navegação com o Maps e
+                                colaboração no Drive. Suas ferramentas, como Docs e Calendar, tornam minha rotina mais
+                                prática e organizada.
+                            </p>
+
+                            <div class="d-flex align-items-center justify-content-center mt-3">
+                                <a href="https://www.google.com" target="_blank"
+                                    class="btn btn-success col-12 col-md-10 col-lg-8 fs-5 p-2 testeB fs-30 transFor">
+
+                                    Visitar
+
+                                    <i class="ps-2 bi bi-box-arrow-up-right"></i>
+                                </a>
+                            </div>
+
+                        </div>
+
+                        <!-- Card Footer: Rodapé do card, geralmente contém informações adicionais ou ações -->
+                        <div class="card-footer">
+
+                            <div class="btn-group col-12 my-2" role="group">
+
+                                <button class="btn btn-outline-secondary testeB" type="button"
+                                    data-bs-target="#carouselCards" data-bs-slide="prev">
+                                    <i class="bi bi-caret-left"></i>
+                                </button>
+
+                                <button class="btn btn-outline-secondary testeB" type="button"
+                                    data-bs-target="#carouselCards" data-bs-slide="next">
+                                    <i class="bi bi-caret-right"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- CARD 2 - YOUTUBE -->
+                <div class="carousel-item vh-100" data-bs-theme="light">
+
+                    <!-- CARD - YOUTUBE -->
+                    <div class="card col-xs-12 col-sm-10 m-auto sh5">
+
+                        <!-- Card Image Top: Imagem exibida na parte superior do card -->
+                        <div class="col-12 d-flex align-items-center justify-content-center rounded-top background-red">
+
+                            <img src="assets/img/img/YoutubeLogo.jpg" alt="Youtube" class="card-img-top">
+
+                        </div>
+
+                        <!-- Card Header: Cabeçalho do card, geralmente contém o título ou informações principais -->
+                        <div class="card-header d-flex align-items-center justify-content-center flex-column">
+
+                            <h5 class="d-flex align-items-center card-title testeB fs-30">
+
+                                <i class="bi bi-youtube me-2 color-red fs-50"></i>
+
+                                YouTube
+
+                            </h5>
+
+                        </div>
+
+                        <!-- Card Body: Conteúdo principal do card, onde são apresentadas informações detalhadas -->
+                        <div class="card-body">
+
+                            <p class="mx-2 testeB">
+                                O YouTube é uma plataforma incrível para aprender e se entreter. Uso para tutoriais,
+                                músicas e vlogs. A diversidade de conteúdo e a interação com criadores tornam a
+                                experiência rica e envolvente.
+                            </p>
+
+                            <div class="d-flex align-items-center justify-content-center mt-3">
+                                <a href="https://www.youtube.com" target="_blank"
+                                    class="btn btn-success col-12 col-md-10 col-lg-8 fs-5 p-2 testeB fs-30 transFor">
+
+                                    Visitar
+
+                                    <i class="ps-2 bi bi-box-arrow-up-right"></i>
+                                </a>
+                            </div>
+
+                        </div>
+
+                        <!-- Card Footer: Rodapé do card, geralmente contém informações adicionais ou ações -->
+                        <div class="card-footer">
+
+                            <div class="btn-group col-12 my-2" role="group">
+
+                                <button class="btn btn-outline-secondary testeB" type="button"
+                                    data-bs-target="#carouselCards" data-bs-slide="prev">
+                                    <i class="bi bi-caret-left"></i>
+                                </button>
+
+                                <button class="btn btn-outline-secondary testeB" type="button"
+                                    data-bs-target="#carouselCards" data-bs-slide="next">
+                                    <i class="bi bi-caret-right"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- CARD 3 - GITHUB -->
+                <div class="carousel-item vh-100" data-bs-theme="light">
+
+                    <!-- CARD - GITHUB -->
+                    <div class="card col-xs-12 col-sm-10 m-auto sh5">
+
+                        <!-- Card Image Top: Imagem exibida na parte superior do card -->
+                        <div
+                            class="col-12 d-flex align-items-center justify-content-center rounded-top background-darkgray">
+
+                            <img src="assets/img/img/Github-Logo.png" alt="GitHub" class="card-img-top">
+
+                        </div>
+
+                        <!-- Card Header: Cabeçalho do card, geralmente contém o título ou informações principais -->
+                        <div class="card-header d-flex align-items-center justify-content-center flex-column">
+
+                            <h5 class="d-flex align-items-center card-title testeB fs-30">
+
+                                <i class="bi bi-github me-2 fs-47"></i>
+
+                                GitHub
+
+                            </h5>
+
+                        </div>
+
+                        <!-- Card Body: Conteúdo principal do card, onde são apresentadas informações detalhadas -->
+                        <div class="card-body">
+
+                            <p class="mx-2 testeB">
+                                O GitHub é essencial para desenvolvedores. Uso para gerenciar projetos, colaborar em
+                                equipe e versionar código. Suas ferramentas, como o controle de versão e projetos open
+                                source, tornam o desenvolvimento mais eficiente.
+                            </p>
+
+                            <div class="d-flex align-items-center justify-content-center mt-3">
+                                <a href="https://www.github.com" target="_blank"
+                                    class="btn btn-success col-12 col-md-10 col-lg-8 fs-5 p-2 testeB fs-30 transFor">
+
+                                    Visitar
+
+                                    <i class="ps-2 bi bi-box-arrow-up-right"></i>
+                                </a>
+                            </div>
+
+                        </div>
+
+                        <!-- Card Footer: Rodapé do card, geralmente contém informações adicionais ou ações -->
+                        <div class="card-footer">
+
+                            <div class="btn-group col-12 my-2" role="group">
+
+                                <button class="btn btn-outline-secondary testeB" type="button"
+                                    data-bs-target="#carouselCards" data-bs-slide="prev">
+                                    <i class="bi bi-caret-left"></i>
+                                </button>
+
+                                <button class="btn btn-outline-secondary testeB" type="button"
+                                    data-bs-target="#carouselCards" data-bs-slide="next">
+                                    <i class="bi bi-caret-right"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- CARD 4 - INSTAGRAM -->
+                <div class="carousel-item vh-100" data-bs-theme="light">
+
+                    <!-- CARD - INSTAGRAM -->
+                    <div class="card col-xs-12 col-sm-10 m-auto sh5">
+
+                        <!-- Card Image Top: Imagem exibida na parte superior do card -->
+                        <div
+                            class="col-12 d-flex align-items-center justify-content-center rounded-top background-white">
+
+                            <img src="assets/img/img/InstagramLogo.png" alt="Instagram" class="card-img-top">
+
+                        </div>
+
+                        <!-- Card Header: Cabeçalho do card, geralmente contém o título ou informações principais -->
+                        <div class="card-header d-flex align-items-center justify-content-center flex-column">
+
+                            <h5 class="d-flex align-items-center card-title testeB fs-30">
+
+                                <i class="bi bi-instagram me-2 insta"></i>
+
+                                Instagram
+
+                            </h5>
+
+                        </div>
+
+                        <!-- Card Body: Conteúdo principal do card, onde são apresentadas informações detalhadas -->
+                        <div class="card-body">
+
+                            <p class="mx-2 testeB">
+                                O Instagram é uma plataforma visual que uso para compartilhar fotos e vídeos do meu dia
+                                a dia. Gosto de explorar tendências, além de me inspirar com dicas de estilo e projetos.
+                            </p>
+
+                            <div class="d-flex align-items-center justify-content-center mt-3">
+
+                                <a href="https://www.instagram.com" target="_blank"
+                                    class="btn btn-success col-12 col-md-10 col-lg-8 fs-5 p-2 testeB fs-30 transFor">
+
+                                    Visitar
+
+                                    <i class="ps-2 bi bi-box-arrow-up-right"></i>
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Card Footer: Rodapé do card, geralmente contém informações adicionais ou ações -->
+                        <div class="card-footer">
+
+                            <div class="btn-group col-12 my-2" role="group">
+
+                                <button class="btn btn-outline-secondary testeB" type="button"
+                                    data-bs-target="#carouselCards" data-bs-slide="prev">
+                                    <i class="bi bi-caret-left"></i>
+                                </button>
+
+                                <button class="btn btn-outline-secondary testeB" type="button"
+                                    data-bs-target="#carouselCards" data-bs-slide="next">
+                                    <i class="bi bi-caret-right"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- CARD 4 - WHATSAPP -->
+                <div class="carousel-item vh-100" data-bs-theme="light">
+
+                    <!-- CARD - WHATSAPP -->
+                    <div class="card col-xs-12 col-sm-10 m-auto sh5">
+
+                        <!-- Card Image Top: Imagem exibida na parte superior do card -->
+                        <div
+                            class="col-12 d-flex align-items-center justify-content-center rounded-top background-darkgreen">
+
+                            <img src="assets/img/img/WhatsAppLogo.png" alt="Whatsapp" class="card-img-top">
+
+                        </div>
+
+                        <!-- Card Header: Cabeçalho do card, geralmente contém o título ou informações principais -->
+                        <div class="card-header d-flex align-items-center justify-content-center flex-column">
+
+                            <h5 class="d-flex align-items-center card-title testeB fs-30 fs-30">
+
+                                <i class="bi bi-whatsapp me-2 color-green fs-47"></i>
+
+                                Whatsapp
+
+                            </h5>
+
+                        </div>
+
+                        <!-- Card Body: Conteúdo principal do card, onde são apresentadas informações detalhadas -->
+                        <div class="card-body">
+
+                            <p class="mx-2 testeB">
+                                O WhatsApp é essencial para minha comunicação diária. Uso para mensagens rápidas,
+                                chamadas de vídeo e grupos que facilitam a organização. Compartilhar fotos e status
+                                torna tudo prático e acessível.
+                            </p>
+
+                            <div class="d-flex align-items-center justify-content-center mt-3">
+                                <a href="https://www.whatsapp.com" target="_blank"
+                                    class="btn btn-success col-12 col-md-10 col-lg-8 fs-5 p-2 testeB fs-30 transFor">
+
+                                    Visitar
+
+                                    <i class="ps-2 bi bi-box-arrow-up-right"></i>
+                                </a>
+                            </div>
+
+                        </div>
+
+                        <!-- Card Footer: Rodapé do card, geralmente contém informações adicionais ou ações -->
+                        <div class="card-footer">
+
+                            <div class="btn-group col-12 my-2" role="group">
+
+                                <button class="btn btn-outline-secondary testeB" type="button"
+                                    data-bs-target="#carouselCards" data-bs-slide="prev">
+                                    <i class="bi bi-caret-left"></i>
+                                </button>
+
+                                <button class="btn btn-outline-secondary testeB" type="button"
+                                    data-bs-target="#carouselCards" data-bs-slide="next">
+                                    <i class="bi bi-caret-right"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="assets/js/main.js" type="module"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

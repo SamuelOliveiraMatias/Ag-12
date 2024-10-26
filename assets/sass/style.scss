@@ -1,0 +1,30 @@
+// Importa estilos de ícones do arquivo icon.scss
+@import 'icon.scss';
+// Importa estilos de fonte do arquivo font.scss
+@import 'font.scss';
+// Importa estilos de cartões do arquivo cards.scss
+@import 'cards.scss';
+// Importa definições de cores do arquivo color.scss
+@import 'color.scss';
+// Importa estilos da barra de navegação do arquivo navBar.scss
+@import 'navBar.scss';
+// Importa estilos de largura do arquivo widths.scss
+@import 'widths.scss';
+// Importa estilos de sombras do arquivo shadows.scss
+@import 'shadows.scss';
+// Importa animações do arquivo animation.scss
+@import 'animation.scss';
+// Importa os estilos do Bootstrap a partir do diretório node_modules
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+
+// Define uma classe que reduz o tamanho da fonte em telas menores que 576px
+.diminuirFonte {
+    @media (max-width: 576px) {
+        font-size: 15px !important; // Aplica tamanho de fonte de 15px, forçando a prioridade
+    }
+}
+
+// Estilo personalizado para a barra de rolagem
+::-webkit-scrollbar {
+    display: none; // Esconde a barra de rolagem em navegadores WebKit (como Chrome e Safari)
+}

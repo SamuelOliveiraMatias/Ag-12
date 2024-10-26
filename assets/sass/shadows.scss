@@ -1,0 +1,30 @@
+.sh1 {
+    // Define uma sombra com múltiplos níveis de desfoque e deslocamento
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, // Sombra com cor azulada, desfoque e deslocamento
+        rgba(0, 0, 0, 0.3) 0px 8px 16px -8px; // Sombra preta com menor desfoque e deslocamento
+}
+
+.sh2 {
+    // Define uma sombra mais simples
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; // Sombra preta com desfoque e deslocamento
+}
+
+.sh3 {
+    // Define uma sombra complexa com múltiplas camadas
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, // Sombra negra intensa com grande desfoque
+        rgba(0, 0, 0, 0.12) 0px -12px 30px, // Sombra mais leve acima do elemento
+        rgba(0, 0, 0, 0.12) 0px 4px 6px, // Sombra leve na parte inferior
+        rgba(0, 0, 0, 0.17) 0px 12px 13px, // Sombra leve mais abaixo
+        rgba(0, 0, 0, 0.09) 0px -3px 5px; // Sombra leve acima
+}
+
+.sh4 {
+    // Define uma sombra com dois níveis de desfoque
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, // Sombra leve com desfoque
+        rgba(0, 0, 0, 0.23) 0px 6px 6px; // Sombra mais leve e próxima
+}
+
+.sh5 {
+    // Define uma sombra forte e ampla
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px; // Sombra negra intensa e ampla com grande desfoque
+}

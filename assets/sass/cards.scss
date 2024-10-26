@@ -1,0 +1,5 @@
+.card-img-top {
+    height: 200px !important; // Define a altura da imagem como 200 pixels, forçando essa regra
+    width: 100% !important; // Define a largura da imagem como 100% do contêiner, forçando essa regra
+    object-fit: contain !important; // Ajusta a imagem para caber no espaço disponível sem cortar, forçando essa regra
+}
