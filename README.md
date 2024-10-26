@@ -55,7 +55,5 @@ npm install
 
 Abra o arquivo `index.html` em um navegador para visualizar a aplicação.
 
-**CASO O SITE NÃO FUNCIONE CORRETAMENTE, VEJA O SITE NO PRÓPRIO GITHUB QUE FOI HOSPEDADO O SITE.**
-
 ## Conclusão
 **Agenda 12** é uma ferramenta útil para gerenciar e acessar rapidamente os sites favoritos dos usuários, combinando funcionalidades modernas com um design responsivo e interativo. A aplicação é fácil de usar e personalizável, proporcionando uma experiência única para cada usuário.
